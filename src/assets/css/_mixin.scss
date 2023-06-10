@@ -1,0 +1,100 @@
+@mixin txt-bgimg($imgFile, $position: left) {
+  background-image: url("#{$img-path}/#{$imgFile}");
+  background-repeat: no-repeat;
+  background-position: #{$position};
+}
+
+//  font : 피그마 순서대로 작성
+@mixin font($weight: 400, $size: 12px, $height: 16px) {
+  font-size: #{$size};
+  font-weight: #{$weight};
+  line-height: #{$height};
+}
+
+// tooltip
+@mixin tooltip($top: null, $right: null, $bottom: null, $left: null) {
+  padding: 8px 16px;
+  background-color: $dark_2;
+  color: $white;
+  border-radius: 2px;
+  position: relative;
+  z-index: 10;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: #{$top};
+    right: #{$right};
+    bottom: #{$bottom};
+    left: #{$left};
+    transform: rotate(45deg) translateX(-50%);
+    background-color: $dark_2;
+  }
+}
+
+@mixin tooltip_cross($radius: null, $left: null, $bottom: null, $scale: 1) {
+  padding: 8px 28px 8px 16px;
+  background-color: $dark_2;
+  color: $white;
+  border-radius: #{$radius};
+  position: relative;
+  z-index: 10;
+  &::after {
+    content: "";
+    position: absolute;
+    flex-wrap: wrap;
+    width: 0px;
+    height: 0px;
+    border-top: 6px solid transparent;
+    border-right: 8px solid white;
+    background-color: $dark_2;
+    left: #{$left};
+    bottom: #{$bottom};
+    transform: scaleX(#{$scale});
+  }
+  img {
+    top: 20.83%;
+    right: 4.12%;
+  }
+}
+// popover
+@mixin popover($top: null, $right: null, $bottom: null, $left: null) {
+  @include font(400, 14px, 18px);
+  color: $dark_2;
+  background-color: $white;
+  border: 1px solid $light_3;
+  border-radius: 4px;
+  width: 250px;
+  padding: 16px 28px;
+  box-sizing: border-box;
+  position: relative;
+  align-items: center;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 10.3px;
+    height: 10.3px;
+    top: #{$top};
+    bottom: #{$bottom};
+    left: #{$left};
+    right: #{$right};
+    transform: rotate(45deg);
+    background-color: $white;
+    border-top: 1px solid $light_3;
+    border-left: 1px solid $light_3;
+  }
+  p {
+    width: 194px;
+    word-break: break-all;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+  // btns in popover
+  .btns {
+    gap: 4px;
+    .cancel {
+      color: $dark_3;
+    }
+  }
+}
